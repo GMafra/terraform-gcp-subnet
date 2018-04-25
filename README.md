@@ -6,7 +6,7 @@ Creates and manages Subnetworks within a VPC on GCP
 
 ```hcl
 module subnet-module {
-  source = "/Users/Gabriel/Terraform/GCP/modules/subnet-module"
+  source = "git@github.com:GMafra/terraform-gcp-subnet.git"
   name = "tf-subnet"
   vpc = "tf-vpc"
   ip_cidr_range = "10.0.1.0/24"
@@ -16,12 +16,12 @@ It can also be used in conjunction with my VPC module to create VPC + Subnet
 
 ```hcl
 module vpc-module {
-  source = "git@github.com:GMafra/GCP-modules.git//vpc-module"
+  source = "git@github.com:GMafra/terraform-gcp-vpc.git"
   name   = "tf-vpc"
 }
 
 module subnet-module {
-  source = "git@github.com:GMafra/GCP-modules.git//subnet-module"
+  source = "git@github.com:GMafra/terraform-gcp-subnet.git"
   name = "tf-subnet"
   vpc = "${module.vpc-module.name}"
   ip_cidr_range = "10.0.1.0/24"
